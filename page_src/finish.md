@@ -1,4 +1,4 @@
-# Authorization almost finished!
+# Authorization almost done!
 
 Please send 
 

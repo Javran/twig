@@ -13,7 +13,7 @@ CALLBACK_URL = 'http://%s.appspot.com/oauth/callback' % get_application_id()
 
 class OAuthSignHandler(webapp2.RequestHandler):
 	def get(self):
-		html = tools.parseMarkdown("sign.md")
+		html = tools.parseMarkdown("./page_src/sign.md")
 		self.response.write(html)
 	
 class OAuthRequestTokenHandler(webapp2.RequestHandler):
@@ -89,7 +89,7 @@ class OAuthCallbackHandler(webapp2.RequestHandler):
 class OAuthFinishHandler(webapp2.RequestHandler):
 	def get(self):
 		code = self.request.get("code")
-		html = tools.parseMarkdown( "finish.md", {
+		html = tools.parseMarkdown( "./page_src/finish.md", {
 			"{{app_name}}" : get_application_id(),
 			"{{code}}": code})
 		#self.response.write("use code: %s to bind your gtalk." % code )

@@ -5,7 +5,7 @@ from version import VERSION
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
-		html = tools.parseMarkdown("index.md", {
+		html = tools.parseMarkdown("./page_src/index.md", {
 			"{{app_name}}" : get_application_id(),
 			"{{version}}": VERSION })
 		self.response.write(html)
