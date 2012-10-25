@@ -18,6 +18,6 @@ which partly gave birth to **twig** as well, thanks for twitalker!
 3. send message " `.help` " for a short instruction about how to play with it
 4. most commands are similar with those in **twitalker**, EXCEPT that leading character of commands is '.' instead of '-'
 5. use " `.cmds` " to grab available commands, " `.alias` " to find alias of a given command.
-6. more detailed help documents coming soon..
+6. more detailed help document is [here](/help/commandhelp)
 
 </font>

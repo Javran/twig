@@ -1,7 +1,7 @@
 import webapp2
 from google.appengine.api.app_identity import get_application_id
 import tools
-from config import VERSION
+from version import VERSION
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):

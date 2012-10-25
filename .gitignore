@@ -26,5 +26,10 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
+#configure file that might contain private information
 config.py
 app.yaml
+
+# vim tmp files
+*.swp
+

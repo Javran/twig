@@ -17,3 +17,7 @@ twig rev-4:
 	* fix a bug: authorization process is not detailed enough to guide users to bind correctly
 	* frontend page modification, more detailed
 	* '.cmds' is now an alias of '.commandlist' 
+
+twig rev-5:
+	* add a command help page for all commands available
+	* move VERSION to another file

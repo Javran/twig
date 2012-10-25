@@ -1,14 +1,16 @@
 from command import lookForCommand
 import re
 
+# add number in the value thus we can arrange category by simply sorting
 category_description = {
-	"account": 	"Account management",
-	"help":		"Help document or helpful tools",
-	"ttweet":	"Tweets",
-	"tfriend":	"Friendship or user information",
-	"tdm":		"Direct messages",
-	"tlist":	"Lists",
-	"other":	"Other commands"
+	"help":		(0, "Help document or helpful tools"),
+	"account": 	(1, "Account management"),
+	"ttweet":	(2, "Tweet or timeline"),
+	"tfriend":	(3, "Friendship or user information"),
+	"tlist":	(4, "List"),
+	"tfav":		(5, "Favorites"),
+	"tdm":		(6, "Direct message"),
+	"other":	(7, "Other command"),
 }
 	
 def getCategory(cmd):
@@ -26,4 +28,4 @@ def getCategory(cmd):
 	except:
 		category = "other"
 	
-	return (category, category_description[category])
+	return (category, category_description[category][1])

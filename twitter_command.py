@@ -169,7 +169,7 @@ class TwitterAPIWrapper(object):
 
 	def twiCmdHomeTimeline(self, params, r):
 		"""
-			# ttimeline
+			# ttweet
 			% show my home timeline
 			% format: .ho [where]
 			% use command '.where' for how to use '[where]'
@@ -188,7 +188,7 @@ class TwitterAPIWrapper(object):
 
 	def twiCmdMention(self, params, r):
 		"""
-			# ttimeline
+			# ttweet
 			% show my mentions timeline
 			% * if you are seeking help for how to reply others,
 			%   please refer to '.help reply'
@@ -671,7 +671,7 @@ class TwitterAPIWrapper(object):
 
 	def twiCmdMyTweets(self, params, r):
 		"""
-			# ttimeline
+			# ttweet
 			% get my tweets
 			% format: .me [where]
 			% use command '.where' for how to use '[where]'
@@ -691,7 +691,7 @@ class TwitterAPIWrapper(object):
 
 	def twiCmdUserTimeline(self, params, r):
 		"""
-			# ttimeline
+			# ttweet
 			% view timeline of a given user
 			% format: .tl [user] [where] 
 			% both 'user' and 'where' are optional
@@ -733,7 +733,7 @@ class TwitterAPIWrapper(object):
 
 	def twiCmdConversation(self, params, r):
 		"""
-			# ttimeline
+			# ttweet
 			% view conversation, backtrack tweets
 			% format: .msg <tweet id>
 			% up to 5 tweets
@@ -768,7 +768,7 @@ class TwitterAPIWrapper(object):
 	
 	def twiCmdSearch(self, params, r):
 		"""
-			# ttimeline
+			# ttweet
 			% search tweets
 			% format: .s "<query>" [where]
 			% query can contain any characters including whitespace

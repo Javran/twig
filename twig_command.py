@@ -110,7 +110,7 @@ def cmdUser(account, params, r):
 	r.l( ("active_id", acc_entity.active_id) )
 	r.l( user_list )
 	
-# XXX : support screen_name switch at future
+# XXX : support screen_name switch in future
 def cmdSwitch(account, params, r):
 	"""
 		# account
@@ -208,6 +208,7 @@ def cmdAlias(account, params, r):
 		% # alias:
 		% A [@,at,mention]
 		% which means '.@' '.at' and '.mention' are all identical
+		* when called as function, return the alias list
 	"""
 	if len( params ) == 0:
 		r.l("!bad argument")
@@ -224,6 +225,7 @@ def cmdAlias(account, params, r):
 	r.l( ("cmd", cmd) )
 	r.l( "alias:" )
 	r.l( alist )
+	return alist
 
 def cmdWhere(account, params, r):
 	"""
@@ -276,7 +278,7 @@ def cmdVersion(account, params, r):
 	if len( params ) > 0:
 		r.l("!bad argument")
 		return
-	from config import VERSION
+	from version import VERSION
 	r.l( ("version", VERSION) )
 
 import re
