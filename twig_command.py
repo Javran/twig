@@ -337,6 +337,7 @@ def cmdCommandCategory(account, params, r):
 # idea grabbed from http://stackoverflow.com/questions/4201062/how-can-i-unshorten-a-url-using-python
 def cmdUnshortLink(account, params, r):
 	"""
+		# help	
 		% unshort links
 		% format: .unshort <link>
 		
