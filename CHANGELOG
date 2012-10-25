@@ -22,3 +22,5 @@ twig rev-5:
 	* add a command help page for all commands available
 	* move VERSION to another file
 	* fix a bug: cannot view timeline of lists
+	* new command '.unshortlink'
+		'.unshortlink' makes use of unshort.me

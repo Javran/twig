@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
-
 from google.appengine.ext import db
 import twig_db
 import re
 from twig_db import User, Account, RelationAccountUser
-# twig_command module contains cmds that does not require twitter account context
+import httplib
+import urlparse
+import tools
+import urllib2
+import json
 
+# twig_command module contains cmds that does not require twitter account context
 alias_table = {
 	"sw" :		"switch",
 	"bd" :		"bind",
@@ -18,6 +22,8 @@ alias_table = {
 	"len":		"lengthcheck",
 	"lscmd":	"commandlist",
 	"cmds":		"commandlist",
+	"unshort":	"unshortlink",
+	"us":		"unshortlink",
 }
 
 def cmdBind(account, params, r):
@@ -327,3 +333,26 @@ def cmdCommandCategory(account, params, r):
 		return
 
 	r.l( ("category", d) )
+		
+# idea grabbed from http://stackoverflow.com/questions/4201062/how-can-i-unshorten-a-url-using-python
+def cmdUnshortLink(account, params, r):
+	"""
+		% unshort links
+		% format: .unshort <link>
+		
+		* make use of unshort.me
+	"""
+	if len(params)==0:
+		r.l("!bad argument")
+		return
+	url = 'http://api.unshort.me/?r=%s&t=json' % params 
+	try:
+		f = urllib2.urlopen( url )
+		data = json.load( f )
+		if data["success"] != "true":
+			r.l("!unshort failed")
+			return
+		r.r( data["resolvedURL"] )
+		return
+	except:
+		r.l( "!unshort failed" )
