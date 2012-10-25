@@ -20,4 +20,8 @@ which partly gave birth to **twig** as well, thanks for twitalker!
 5. use " `.cmds` " to grab available commands, " `.alias` " to find alias of a given command.
 6. more detailed help document is [here](/help/commandhelp)
 
+> If you are the administrator of this application, 
+> and REQUIRE_INVITATION is set, 
+> please login and visit [this page](/invite/management) to generate invitation codes.
+
 </font>
