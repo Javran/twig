@@ -24,3 +24,6 @@ twig rev-5:
 	* fix a bug: cannot view timeline of lists
 	* new command '.unshortlink'
 		'.unshortlink' makes use of unshort.me
+	* new command '.switchuser' which supports switching using screen_name
+	* '.sw' '.switch' are now moved to '.swid' '.switchid'
+	* '.sw' '.su' '.switch' now all means '.switchuser'

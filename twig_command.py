@@ -11,7 +11,7 @@ import json
 
 # twig_command module contains cmds that does not require twitter account context
 alias_table = {
-	"sw" :		"switch",
+	"swid" :	"switchid",
 	"bd" :		"bind",
 	"usr":		"user",
 	"rmuser":	"unbind",
@@ -117,11 +117,11 @@ def cmdUser(account, params, r):
 	r.l( user_list )
 	
 # XXX : support screen_name switch in future
-def cmdSwitch(account, params, r):
+def cmdSwitchID(account, params, r):
 	"""
 		# account
 		% switch to another user
-		% format: .switch [user_id]
+		% format: .switchid [user_id]
 		% leaving user_id blank leads to command ".user"
 	"""
 	if len(params) == 0:

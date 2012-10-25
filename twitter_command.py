@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from twig_db import getUserInfo, getActiveUser
 from pyoauth4twitter.oauth_twitter import TwitterConsumer, TwitterRequest
 from oauth import CONSUMER_SECRET, CONSUMER_KEY
@@ -10,7 +9,8 @@ import tools
 import re
 from tools import mkURL, urlMix
 import twig_command
-
+import twig_db
+from google.appengine.ext import db
 # key, value = alias, cmd 
 alias_table = {
 	"at" :		"mention",
@@ -70,7 +70,10 @@ alias_table = {
 	"lsmem":	"listmembership",
 	"lsmbr":	"listmembership",
 	"ld":		"listmembership",
-	"ls":		"liststatus"
+	"ls":		"liststatus",
+	"sw":		"switchuser",
+	"su":		"switchuser",
+	"switch":	"switchuser",
 }
 
 class TwitterAPIWrapper(object):
@@ -892,3 +895,27 @@ class TwitterAPIWrapper(object):
 		tl = self._parseList( raw_data, twitter_object.Tweet )
 		r.l( tl )
 
+	def twiCmdSwitchUser(self, params, r):
+		"""
+			# account
+			% switch user by screen_name
+			% format: .su [screen_name]
+			% * note this command only works 
+			%   when you have bound an active user 
+			% leaving screen_name blank leads to command ".user"
+		"""
+		if len( params ) == 0:
+			twig_command.cmdUser(self.account, params, r)
+			return
+		pat = re.compile(r'^([A-Za-z0-9_]+)$')
+		m = pat.match( params )
+		if m is None:
+			r.l("!bad argument")
+			return
+
+		url = mkURL( "https://api.twitter.com/1.1/users/show.json", screen_name=params )
+		succ, response = self.get( url, r )
+		if not succ:
+			return
+		data = json.load( response )
+		twig_command.cmdSwitchID(self.account, data["id_str"], r)	
