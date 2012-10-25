@@ -1,0 +1,19 @@
+twig rev-2:
+	* create CHANGELOG
+	* all bot commands are functional	
+
+twig rev-3:
+	* fix a bug that might misinterpret invalid command into texts
+	* more critical about command arguments
+	* add category for each commands 
+	* new command '.commandcategory'
+		'.commandcategory' is used to get the category of a specific command
+	* add invitation code limitation 
+	* when REQURE_INVITATION is set to True, users need invitation code to authorize on twig
+	* invitation codes are listed on /invite/management and only admins can seen
+	* fix a bug: signature error for some tweets
+
+twig rev-4:
+	* fix a bug: authorization process is not detailed enough to guide users to bind correctly
+	* frontend page modification, more detailed
+	* '.cmds' is now an alias of '.commandlist' 
