@@ -876,6 +876,7 @@ class TwitterAPIWrapper(object):
 		if not params[0].isdigit():
 			r.l("!bad argument")
 			return
+		extra = {}
 		if len( params ) == 2:
 			extra = tools.parseWhere( params[1] )
 			if extra is None:
