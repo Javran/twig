@@ -18,6 +18,7 @@ alias_table = {
 	"?":		"help",
 	"h":		"help",
 	"hlp":		"help",
+	"man":		"help",
 	"lck":		"lengthcheck",
 	"len":		"lengthcheck",
 	"lscmd":	"commandlist",

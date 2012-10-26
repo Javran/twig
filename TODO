@@ -2,4 +2,6 @@ TODO LIST:
 - a page to introduce basic of twig
 - application management through XMPP bot
 - auto-remove user info when user are no longer bound with any account
-- more-friendly output
+- more-friendly output (according to XMPP source)
+- need a strategy for id-shorten
+- add prefix before command in help pages

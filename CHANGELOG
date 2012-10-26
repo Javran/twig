@@ -27,3 +27,5 @@ twig rev-5:
 	* new command '.switchuser' which supports switching using screen_name
 	* '.sw' '.switch' are now moved to '.swid' '.switchid'
 	* '.sw' '.su' '.switch' now all means '.switchuser'
+	* new alias '.man' for '.help'
+	* now twig bot can post status on your XMPP client/gtalk

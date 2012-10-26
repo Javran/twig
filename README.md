@@ -1,7 +1,7 @@
 twig
 ====
 
-twig is an agent that enables people to get access to twitter freely via gtalk.
+twig(TWeeting vIa Gtalk) is an agent that enables people to get access to twitter freely via gtalk.
 
 steps to get things work:
 
