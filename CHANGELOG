@@ -29,3 +29,4 @@ twig rev-5:
 	* '.sw' '.su' '.switch' now all means '.switchuser'
 	* new alias '.man' for '.help'
 	* now twig bot can post status on your XMPP client/gtalk
+	* bug fix: /help/commandhelp cannot visit

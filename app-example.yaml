@@ -1,6 +1,4 @@
-# please replace 'your-app' with your application-id
-
-application: your-app  
+application: # put your application id here  
 version: 1
 runtime: python27
 api_version: 1
@@ -10,6 +8,9 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+
+- url: /image
+  static_dir: image
 
 - url: /test
   script: cmdtest.app
@@ -30,6 +31,9 @@ handlers:
   script: chat.app
   login: admin
 
+- url: /help/.*
+  script: help.app
+
 - url: /.*
   script: main.app
 
@@ -39,3 +43,4 @@ libraries:
 
 inbound_services:
 - xmpp_message
+- xmpp_presence
