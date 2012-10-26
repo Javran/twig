@@ -116,7 +116,6 @@ def cmdUser(account, params, r):
 	r.l( ("active_id", acc_entity.active_id) )
 	r.l( user_list )
 	
-# XXX : support screen_name switch in future
 def cmdSwitchID(account, params, r):
 	"""
 		# account
