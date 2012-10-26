@@ -26,6 +26,10 @@ handlers:
   script: chat.app
   login: admin
 
+- url: /_ah/xmpp/presence/available/
+  script: chat.app
+  login: admin
+
 - url: /.*
   script: main.app
 
