@@ -76,4 +76,5 @@ class Reply(object):
 			self.o += "> %s\n" % obj.descrpition
 			return
 
-		self.o += "{unknown object: %s}\n" % unicode( str )
+		self.o += "! unknown object, dump:\n" 
+		self.r( obj )
