@@ -3,6 +3,15 @@ import codecs
 import markdown
 import urllib
 
+def loadHead(response):
+	"""
+		load the head part and write it to output 
+	"""
+	f = open( "./page_src/head.html", "r" )
+	html = f.read()
+	f.close()
+	response.write(html)
+
 def parseMarkdown(src_name, replace_table={}):
 	"""
 		load markdown source file, do some replacements 

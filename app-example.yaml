@@ -12,6 +12,9 @@ handlers:
 - url: /image
   static_dir: image
 
+- url: /css
+  static_dir: css
+
 - url: /test
   script: cmdtest.app
   login: admin

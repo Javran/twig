@@ -1,8 +1,10 @@
-# Authorization almost done!
+# AUTHORIZATION ALMOST DONE
 
-Please send 
+* Please send 
 
-<font size="10"> `.bind {{code}}`  </font>
+<div class="bind">
+.bind {{code}}
+</div>
 
-to {{app_name}}@appspot.com in your XMPP client/gtalk 
-to bind Twitter user with your account.
+* to {{app_name}}@appspot.com in your XMPP client/gtalk 
+* to bind Twitter user with your account.

@@ -1,0 +1,53 @@
+body {
+	background-color:#e7e7e7;
+}
+
+h1 {
+	font-size: 45px;
+	color: #000;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	padding-left: 80px;
+}
+
+h2 {
+	font-size: 30px;
+	font-family: Verdana, Geneva, sans-serif;
+	padding-left: 60px;
+}
+
+ul {
+	font-size: 20px;
+	list-style-image: url('/image/location.png');
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	font-size: 20px;
+	margin-left: 120px;
+	padding-bottom: 5px;
+}
+
+blockquote {
+	font-size: 18px;
+	margin: auto;
+	width: 50%;
+}
+
+.authform {
+	font-size: 20px;
+	padding-left: 120px;
+}
+
+div.badauth {
+	padding-top: 10px;
+	color: red;
+}
+
+div.bind {
+	font-size: 30px;
+	font-family: "Lucida Console", Monaco, monospace;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 140px;
+}

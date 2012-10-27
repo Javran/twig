@@ -13,7 +13,11 @@ CALLBACK_URL = 'http://%s.appspot.com/oauth/callback' % get_application_id()
 
 class OAuthSignHandler(webapp2.RequestHandler):
 	def get(self):
-		html = tools.parseMarkdown("./page_src/sign.md")
+		err_msg = self.request.get("error", default_value="")
+		tools.loadHead( self.response )
+		html = tools.parseMarkdown("./page_src/sign.md", {
+				"{{app_name}}" : get_application_id(),
+				"{{error_msg}}" : err_msg })
 		self.response.write(html)
 	
 class OAuthRequestTokenHandler(webapp2.RequestHandler):
@@ -22,7 +26,8 @@ class OAuthRequestTokenHandler(webapp2.RequestHandler):
 		if REQUIRE_INVITATION:
 			code = self.request.get("code", default_value="")
 			if not removeInvitation( code ):
-				self.response.write("Invalid invitation code, authorization aborted.")
+				self.redirect( "/oauth/sign?error=Invalid%20invitation%20code" )
+				# self.response.write("Invalid invitation code, authorization aborted.")
 				return
 
 		tc = TwitterConsumer(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL) 
@@ -32,7 +37,7 @@ class OAuthRequestTokenHandler(webapp2.RequestHandler):
 		entity.token_secret = tc.token_secret
 		entity.put()
 		#self.response.write("addr: https://api.twitter.com/oauth/authenticate?oauth_token=%s" % tc.token)
-		self.redirect( "https://api.twitter.com/oauth/authenticate?oauth_token=%s" % tc.token )
+		self.redirect( "https://api.twitter.com/oauth/authorize?oauth_token=%s&force=1" % tc.token )
 
 class OAuthCallbackHandler(webapp2.RequestHandler):
 	def get(self):
@@ -88,6 +93,8 @@ class OAuthCallbackHandler(webapp2.RequestHandler):
 
 class OAuthFinishHandler(webapp2.RequestHandler):
 	def get(self):
+		tools.loadHead( self.response )
+
 		code = self.request.get("code")
 		html = tools.parseMarkdown( "./page_src/finish.md", {
 			"{{app_name}}" : get_application_id(),
