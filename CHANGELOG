@@ -31,3 +31,4 @@ twig rev-5:
 	* now twig bot can post status on your XMPP client/gtalk
 	* bug fix: /help/commandhelp cannot visit
 	* dummy handler on xmpp presence to prevent errors
+	* cancel twig bot status post, for which takes up too much frontend instance time
