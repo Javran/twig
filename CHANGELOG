@@ -32,3 +32,4 @@ twig rev-5:
 	* bug fix: /help/commandhelp cannot visit
 	* dummy handler on xmpp presence to prevent errors
 	* cancel twig bot status post, for which takes up too much frontend instance time
+	* bug fix: fix link in home page

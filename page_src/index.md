@@ -46,7 +46,7 @@ which partly gave birth to **twig** as well, thanks for twitalker!
 
 # ![](image/tag.png) How to use
 
-* ![/oauth/sign](image/sign.png)
+* [![](image/sign.png)](/oauth/sign)
 * add friend "`{{app_name}}@appspot.com`"
 * send message " `.help` " for a short instruction about how to play with it
 * most commands are similar with those in **twitalker**, EXCEPT that leading character of commands is '.' instead of '-'
