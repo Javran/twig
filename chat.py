@@ -47,8 +47,9 @@ class NullHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication(
 		[
-			(r'/_ah/xmpp/message/chat/', ChatHandler),
-			(r'/_ah/xmpp/presence/available/', PresenceHandler),
-			(r'/_ah/xmpp/presence/.*', NullHandler),
+			(r'/_ah/xmpp/message/chat/', 		ChatHandler),
+			(r'/_ah/xmpp/presence/available/', 	PresenceHandler),
+			(r'/_ah/xmpp/presence/probe/', 		PresenceHandler),
+			(r'/_ah/xmpp/presence/.*', 		NullHandler),
 		], 
 		debug=True)
