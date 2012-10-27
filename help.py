@@ -2,6 +2,7 @@ import webapp2
 from google.appengine.api.app_identity import get_application_id
 import tools
 from version import VERSION
+import markdown
 
 import twig_command
 import twitter_command
@@ -49,7 +50,8 @@ class CommandHelpHandler(webapp2.RequestHandler):
 		# sort items inside 
 		map( lambda (k, l): (k, sorted(l, key=lambda (name, f): name)) , func_tree )
 
-		self.response.write("<h1>Command helps</h1>")
+		md_src = unicode()
+		md_src += "# COMMAND HELPS\n\n"
 		
 		# a dummy reply to keep cmdAlias work
 		r = Reply()
@@ -57,23 +59,21 @@ class CommandHelpHandler(webapp2.RequestHandler):
 			if len(ls) == 0:
 				continue
 			# print category
-			self.response.write("<b>%s</b><br />" % category.category_description[k][1])
-			self.response.write("<ul>")
+			md_src += "## %s\n" % category.category_description[k][1]
 			for name, f in ls:
 				# print func name and alias
 				alias_list = sorted( twig_command.cmdAlias(None, name, r) )
 				alias_list = map ( lambda n: '<font color="blue">%s</font>' % n, alias_list )
-				self.response.write( "<li>%s</li>" % ' or '.join( alias_list ) )
+				md_src += "### %s\n" % ' or '.join( alias_list )
 	
 				helps = re.findall( r"% (.*)$", f.__doc__, re.MULTILINE )
-				self.response.write("<ul>")
 				if len(helps) == 0:
-					self.response.write("<li>no help for this command<li>")
+					md_src += "#### no help for this command\n\n"
 				for line in helps:
-					self.response.write("<li>%s</li>" % escape(line) )
-				self.response.write("</ul>")
+					md_src += "#### %s\n\n" % escape( line )
 
-			self.response.write("</ul>")
+		tools.loadHead( self.response )
+		self.response.write( markdown.markdown(md_src) )
 
 
 app = webapp2.WSGIApplication(

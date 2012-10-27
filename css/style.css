@@ -15,6 +15,12 @@ h2 {
 	padding-left: 60px;
 }
 
+h3 {
+	font-size: 25px;
+	font-family: Tahoma, Geneva, sans-serif;
+	padding-left: 80px;
+}
+
 ul {
 	font-size: 20px;
 	list-style-image: url('/image/location.png');
@@ -50,4 +56,13 @@ div.bind {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 140px;
+}
+
+h4 {
+	font-size: 18px;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-style: normal;
+	font-weight: normal;
+	padding-left: 140px;
+	margin: 0;
 }

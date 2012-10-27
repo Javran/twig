@@ -36,3 +36,4 @@ twig rev-5:
 	* bug fix: cannot obtain permission of accessing direct messages
 	* new 'sign in' page and new 'authorization finish' page
 	* bug fix: Reply()'s behavior about unknown object
+	* new command help page
