@@ -30,3 +30,4 @@ twig rev-5:
 	* new alias '.man' for '.help'
 	* now twig bot can post status on your XMPP client/gtalk
 	* bug fix: /help/commandhelp cannot visit
+	* dummy handler on xmpp presence to prevent errors

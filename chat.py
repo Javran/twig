@@ -41,9 +41,14 @@ class PresenceHandler(webapp2.RequestHandler):
 		text = ".h <cmd> for help, %d users available" % q.count()
 		xmpp.send_presence(sender, status=text)
 
+class NullHandler(webapp2.RequestHandler):
+	def post(self):
+		pass
+
 app = webapp2.WSGIApplication(
 		[
 			(r'/_ah/xmpp/message/chat/', ChatHandler),
 			(r'/_ah/xmpp/presence/available/', PresenceHandler),
+			(r'/_ah/xmpp/presence/.*', NullHandler),
 		], 
 		debug=True)
