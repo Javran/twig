@@ -186,7 +186,7 @@ def cmdHelp(account, params, r):
 
 		this command grabs and filters functions/methods' __doc__ directly
 		  and '# <category>' will assign a category for the command,
-		  any line with a leading '% ' will be interpreted as help document
+		  any line with a leading <percent><space> will be interpreted as help document
 		  and returned to the user.
 	"""
 	if len(params) == 0:

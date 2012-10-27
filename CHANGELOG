@@ -37,3 +37,7 @@ twig rev-5:
 	* new 'sign in' page and new 'authorization finish' page
 	* bug fix: Reply()'s behavior about unknown object
 	* new command help page
+
+twig rev-6:
+	* basic help document done
+	* bug fix: the help document of command '.help'

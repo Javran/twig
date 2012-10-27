@@ -75,8 +75,18 @@ class CommandHelpHandler(webapp2.RequestHandler):
 		tools.loadHead( self.response )
 		self.response.write( markdown.markdown(md_src) )
 
+import command
+
+class BasicHelpHandler(webapp2.RequestHandler):
+	def get(self):
+		tools.loadHead( self.response )
+		html = tools.parseMarkdown( "./page_src/basic.md", {
+				"{{prefix}}" : command.PREFIX
+			} )
+		self.response.write( html )
 
 app = webapp2.WSGIApplication(
 		[
-			(r'/help/commandhelp', CommandHelpHandler)
+			(r'/help/commandhelp', 	CommandHelpHandler),
+			(r'/help/basic',	BasicHelpHandler),
 		], debug=True)

@@ -1,1 +1,1 @@
-VERSION = "rev-5"
+VERSION = "rev-6"
