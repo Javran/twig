@@ -163,6 +163,9 @@ class TwitterAPIWrapper(object):
 			% duplicating '.' will make it
 			% e.g. "..net is good!" products ".net is good!"
 		"""
+		if params.isspace() or len(params) == 0:
+			r.l("!blank text")
+			return
 		params = twig_command.cmdLengthCheck(None, params, r) 
 		url = mkURL("https://api.twitter.com/1.1/statuses/update.json", status=params)
 		succ, response = self.post(url, r)

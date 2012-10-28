@@ -29,44 +29,36 @@ def parseText(text):
 		try to parse text
 		* text are 'rstrip'-ed first
 		* text leading with two PREFIXs is regarded
-		  as message leading with single PREFIX
+		  as messages leading with single PREFIX
 		  => return (False, parsed_text)
-		* text leading with single PREFIX following a printable char(except spaces)
-		  is regarded as command that suits format: .cmd [raw_params]
-		  => return (True, (cmd, raw_params)) # raw_params might be ''
-		* text that is '' or contains nothing but unprintable chars 
-		  are regarded as invalid text
-		  => return (False, '')
-		* text that cannot suit into rules above are all regarded as text itself
+
+		* text leading with a PREFIX are all regarded as commands,
+		  invalid command will always be parsed as:
+		  => return (True, ('', ''))
+		  and any valid command products:
+		  => return (True, (cmd, raw_params))
+
+		* other text are all parsed as text isself
 		  => return (False, parsed_text)
 	"""
 	text = text.rstrip()
 	if text[:2] == PREFIX * 2:
 		return (False, text[1:])
-	if len(text)>1 and text[0] == PREFIX:
+	if len(text)>=1 and text[0] == PREFIX:
 		newtext = text[1:]
-		# pattern #1: without params
-		pat1 = re.compile(r'^(\S+)$')
-		m = pat1.match(newtext)
+		pattern = re.compile(r'^(\S+)(?:(?:\s+)(.*))?$', re.DOTALL)
+		m = pattern.match(newtext)
 		if m:
-			return (True, (m.group(1), ''))
-		# pattern #2: with params
-		pat2 = re.compile(r'^(\S+)(?:\s+)(.+)$')
-		m = pat2.match(newtext)
-		if m:
-			return (True, (m.group(1), m.group(2)))
-		
+			cmd, params = m.group(1), m.group(2)
+			if params is None:
+				params = ''
+			return (True, (cmd, params))
+
 		# must prevent commands that mismatched with any form below
 		# be parsed as text
 		return (True, ('', ''))
-			
-	if len(text) == 0 or text.isspace():
-		return (False, '')
 	
 	return (False, text)
-
-def cmdNotFound(account, params, r):
-	r.l( "!unknown command" )
 
 # sys commands first, and then twitter api calls
 # order:
@@ -110,7 +102,7 @@ def dispatchCommand(account, cmd, params, r):
 	callback = lookForCommand( cmd ) 
 	
 	if callback is None:
-		cmdNotFound(account, params, r)
+		r.l("!unknown command")
 		return
 	
 	arg1 = inspect.getargspec(callback)[0][0]
@@ -122,7 +114,12 @@ def dispatchCommand(account, cmd, params, r):
 	else:
 		# let's bring TwitterAPIWrapper into being, 
 		# which will provide context for accounts
-		twitter = twitter_command.TwitterAPIWrapper( account )
+		try:
+			twitter = twitter_command.TwitterAPIWrapper( account )
+		except:
+			r.l("!unknown account")
+			return
+
 		callback( twitter, params, r)
 		return
 

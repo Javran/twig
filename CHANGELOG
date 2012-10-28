@@ -41,3 +41,4 @@ twig rev-5:
 twig rev-6:
 	* basic help document done
 	* bug fix: the help document of command '.help'
+	* slight fix on command parsing
