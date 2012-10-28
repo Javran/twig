@@ -20,14 +20,15 @@ class ChatHandler(webapp2.RequestHandler):
 			# is command
 			cmd, params = data
 			command.dispatchCommand(account, cmd, params, r)
-			message.reply( r.o )
+			if len( r.o ) > 0:
+				message.reply( r.o )
 		else:
 			# is text
 			if uid:
 				command.dispatchCommand(account, 'send', data, r) 
 				message.reply( r.o )
 			else:
-				r.l( "!no active account found")
+				r.l( "!no active user found")
 				message.reply( r.o )
 
 class PresenceHandler(webapp2.RequestHandler):

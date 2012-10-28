@@ -46,6 +46,8 @@ class TestHandler(webapp2.RequestHandler):
 				# is command
 				cmd, params = data
 				command.dispatchCommand(account, cmd, params, r)
+				if len( r.o ) ==0:
+					r.l("(blank reply)")
 			else:
 				# is text
 				if uid:
