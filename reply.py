@@ -76,5 +76,21 @@ class Reply(object):
 			self.o += "> %s\n" % obj.descrpition
 			return
 
+		if isinstance(obj, twitter_object.Status):
+			if obj.status is None:
+				st = "N"
+			else:
+				st = "Y"
+
+			self.o += "S %s, %s, %s, %s, %s, %s\n" % \
+				(obj.screen_name, obj.id, obj.statuses_count, obj.friends_count, obj.followers_count, st)
+			self.o += "> %d, %d, %d\n" % (len(obj.name), len(obj.location), len(obj.description))
+			self.o += "> %s\n" % obj.name
+			self.o += "> %s\n" % obj.location
+			self.o += "> %s\n" % obj.description
+			if obj.status is not None:
+				self.l( obj.status )
+			return
+
 		self.o += "! unknown object, dump:\n" 
 		self.r( obj )

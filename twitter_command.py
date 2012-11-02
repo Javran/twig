@@ -434,7 +434,6 @@ class TwitterAPIWrapper(object):
 			# tfriend
 			% check relationship between you and another twitter user
 			% format: .checkrelation <user>
-			% * 'friends' means you are following muturally
 		"""
 		# XXX: potential injection
 		url = mkURL( "https://api.twitter.com/1.1/friendships/lookup.json", screen_name = params )
@@ -456,7 +455,7 @@ class TwitterAPIWrapper(object):
 			return
 
 		if len( ppl["connections"] ) == 2:
-			r.l( "%s and you are friends" % ppl["screen_name"])
+			r.l( "%s and you are following each other" % ppl["screen_name"])
 			return
 
 		if "following" in ppl["connections"]:
@@ -487,28 +486,8 @@ class TwitterAPIWrapper(object):
 			return
 		data = json.loads( response.read() )
 		
-		map( lambda key: (r.l(key), r.r(data[key])), 
-			[
-				"name",
-				"location",
-				"description",
-			]			
-		)
-		map( lambda key: r.l( (key, data[key])),
-			[
-				"screen_name",
-				"id",
-				"statuses_count",
-				"friends_count",
-				"followers_count",
-			]
-		)
-		try:
-			recent = data["status"]["text"]
-			r.l( "status" )
-			r.r( recent )
-		except:
-			pass
+		status = twitter_object.Status( data )
+		r.l( status )
 
 		if len(params) > 0:
 			self.twiCmdCheckRelation(params, r)

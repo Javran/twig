@@ -6,3 +6,4 @@ TODO LIST:
 - need a strategy for id-shorten
 - add prefix before command in help pages
 - bot's status updating showing active user's screen_name ( and re-sent presence after user switch )
+- bug: text not-unescaped 
