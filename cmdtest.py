@@ -41,12 +41,17 @@ class TestHandler(webapp2.RequestHandler):
 			# find active user of this account
 			uid = twig_db.getActiveUser(account)
 
+			isPreCmd, precmd = command.isIdCommand( raw )
+			if isPreCmd:
+				cmd_id, raw = precmd
+				r.h( cmd_id )
+
 			isCmd, data = command.parseText( raw )	
 			if isCmd:
 				# is command
 				cmd, params = data
 				command.dispatchCommand(account, cmd, params, r)
-				if len( r.o ) ==0:
+				if len( r.dump() ) ==0:
 					r.l("(blank reply)")
 			else:
 				# is text
@@ -59,7 +64,7 @@ class TestHandler(webapp2.RequestHandler):
 			if cmd is not None and len(cmd)>0:
 				command.dispatchCommand( account, cmd, params, r )
 		
-		reply = r.o
+		reply = r.dump()
 		if len(reply)>0:
 			self.response.write( ("""
 				<h1>Result</h1>

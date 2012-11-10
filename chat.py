@@ -15,21 +15,27 @@ class ChatHandler(webapp2.RequestHandler):
 		uid = twig_db.getActiveUser(account)
 
 		r = Reply()
+
+		isPreCmd, precmd = command.isIdCommand( raw_text )
+		if isPreCmd:
+			cmd_id, raw_text = precmd
+			r.h( cmd_id )
+
 		isCmd, data = command.parseText( raw_text )	
 		if isCmd:
 			# is command
 			cmd, params = data
 			command.dispatchCommand(account, cmd, params, r)
-			if len( r.o ) > 0:
-				message.reply( r.o )
+			if len( r.dump() ) > 0:
+				message.reply( r.dump() )
 		else:
 			# is text
 			if uid:
 				command.dispatchCommand(account, 'send', data, r) 
-				message.reply( r.o )
+				message.reply( r.dump() )
 			else:
 				r.l( "!no active user found")
-				message.reply( r.o )
+				message.reply( r.dump() )
 
 class PresenceHandler(webapp2.RequestHandler):
 	def post(self):

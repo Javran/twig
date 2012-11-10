@@ -24,6 +24,23 @@ PREFIX = '.'
 #  ".st"
 #                => '.' 'st' 
 
+def isIdCommand(text):
+	"""
+		'Id commands' are commands that has an id
+		* format: .$ <id> <command>
+		return True, (id, raw_text) when the raw text is an id command
+		return False, None on failure
+	"""
+	if text[:1] != PREFIX:
+		return False, None
+	text = text[1:]
+	p = re.compile( r'\$ (\S+) (.*)', re.DOTALL )
+	m = p.match( text )
+	if m is None:
+		return False, None
+	cmd_id, raw_text = m.groups()
+	return True, (cmd_id, raw_text)
+
 def parseText(text):
 	"""
 		try to parse text
