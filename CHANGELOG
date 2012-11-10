@@ -43,3 +43,4 @@ twig rev-6:
 	* bug fix: the help document of command '.help'
 	* slight fix on command parsing
 	* change output of Status
+	* introduced "id command" for the convenience of its clients

@@ -19,6 +19,19 @@ class Reply(object):
 	
 	def __init__(self):
 		self.o = ""
+		self.cid = None
+
+	def h(self, obj):
+		"""
+			set header(cid)
+		"""
+		self.cid = obj
+
+	def dump(self):
+		if self.cid is None:
+			return self.o
+		else:
+			return "$ %s\n%s" % (self.cid, self.o)
 
 	def r(self, obj):
 		"""
