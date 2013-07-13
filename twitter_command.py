@@ -535,12 +535,13 @@ class TwitterAPIWrapper(object):
 			r.l( "!failed when fetching origin tweet" )
 			return
 		data = json.loads( response.read() ) 
-		author = data["user"]["screen_name"]
+		tweetObj = twitter_object.Tweet(data)
+		author = tweetObj.owner
 		
 		if text is None:
-			text = "RT @%s: %s" % (author, data["text"])
+			text = "RT @%s: %s" % (tweetObj.owner, tweetObj.text)
 		else:
-			text = "%s RT @%s: %s" % (text, author, data["text"])
+			text = "%s RT @%s: %s" % (text, tweetObj.owner, tweetObj.text)
 		
 		text = twig_command.cmdLengthCheck(None, text, r) 
 		url = mkURL("https://api.twitter.com/1.1/statuses/update.json", status=text, in_reply_to_status_id=tid)

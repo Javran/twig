@@ -6,6 +6,5 @@ TODO LIST:
 - need a strategy for id-shorten
 - add prefix before command in help pages
 - bot's status updating showing active user's screen_name ( and re-sent presence after user switch )
-- bug: text not-unescaped 
 - bug: outbox of directmessage, recipent's name should be shown rather than sender's
 - need a document for how to register twitter app, including KEY, SECRET and CALLBACK

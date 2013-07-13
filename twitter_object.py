@@ -1,10 +1,10 @@
-
+from ugly import tweetUnescape
 
 class Tweet(object):
 	def __init__(self, data):
 		self.data = data
 		self.id = data["id_str"]
-		self.text = data["text"]
+		self.text = tweetUnescape( data["text"] )
 		self.owner = data["user"]["screen_name"]
 
 class DirectMessage(object):
@@ -12,7 +12,7 @@ class DirectMessage(object):
 		self.data = data
 		self.id = data["id_str"]
 		self.sender = data["sender_screen_name"]
-		self.text = data["text"]
+		self.text = tweetUnescape( data["text"] )
 
 class ListInfo(object):
 	def __init__(self, data):
